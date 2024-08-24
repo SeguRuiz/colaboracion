@@ -43,7 +43,10 @@ correo varchar(100) not null,
 primary key (id),
 foreign key (admin_id) references administradores(id) on delete cascade,
 constraint hotel_unico unique (id, ubicacion)
-); 
+);
+
+-- limite habitaciones hoteles
+
 
 -- tipos de habitaciones
 CREATE TABLE tipos_habitaciones (
