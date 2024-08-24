@@ -32,7 +32,7 @@ VALUES
 INSERT INTO habitaciones (hotel_id, tipo_id, estado, telefono)
 VALUES 
 (1, 1, 'disponible', '2663-9021'),
-(1, 2, 'ocupada', '2590--2020'),
+(1, 2, 'ocupada', '2590-2020'),
 (2, 3, 'reservada', '2080-7088');
 -- Datos de prueba para la tabla 'reservaciones'
 INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida, activa)
