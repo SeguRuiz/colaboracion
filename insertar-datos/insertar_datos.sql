@@ -28,6 +28,17 @@ VALUES
 ('Doble', 2, 80.000),
 ('Suite', 4, 200.000);
 
+-- Datos de prueba para la tabla 'limite_habitaciones'
+INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
+VALUES
+(1, 1, 10),
+(1, 2, 10),
+(1, 3, 5),
+(2, 1, 20),
+(2, 2, 10),
+(2, 3, 10)
+
+
 -- Datos de prueba para la tabla 'habitaciones'
 INSERT INTO habitaciones (hotel_id, tipo_id, estado, telefono)
 VALUES 

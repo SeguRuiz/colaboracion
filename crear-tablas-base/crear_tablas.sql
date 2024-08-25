@@ -81,7 +81,6 @@ foreign key (tipo_id) references tipos_habitaciones(id) on delete cascade
 );
 
 
-
 -- Tablas-reservaciones-huespedes
 
 -- reservaciones
