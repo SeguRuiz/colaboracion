@@ -45,8 +45,6 @@ foreign key (admin_id) references administradores(id) on delete cascade,
 constraint hotel_unico unique (id, ubicacion)
 );
 
--- limite habitaciones hoteles
-
 
 -- tipos de habitaciones
 CREATE TABLE tipos_habitaciones (
@@ -56,6 +54,19 @@ limite_huespedes int not null,
 precio int not null,
 primary key (id)
 );
+
+
+-- limite de habitaciones
+CREATE TABLE limite_habitaciones (
+id int auto_increment not null,
+hotel_id int not null,
+tipo_habitacion_id int not null,
+limite_habitaciones int not null,
+primary key (id),
+foreign key (hotel_id) references hoteles(id) on delete cascade,
+foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cascade
+)
+
 
 -- habitaciones
 CREATE TABLE habitaciones (
