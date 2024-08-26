@@ -7,7 +7,7 @@ CREATE PROCEDURE reservar_habitacion (IN id_reserva int, IN id_habitacion int)
 BEGIN
 
 INSERT INTO reservas_habitaciones (reservacion_id, habitacion_id) VALUES (id_reserva, id_habitacion);
-UPDATE habitaciones SET estado = 'reservada' WHERE id = id_habitacion;
+UPDATE habitaciones SET estado = 2 WHERE id = id_habitacion;
 SELECT * FROM reservas_habitaciones;
 
 END;
@@ -60,6 +60,8 @@ SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fe
 END;
 
 CALL verificar_habitaciones('2024-05-12');
+
+drop table tipos_habitaciones
 
 -- eliminar procedure
 drop procedure verificar_habitaciones; 
