@@ -79,8 +79,8 @@ hotel_id int not null,
 tipo_habitacion_id int not null,
 limite_habitaciones int not null,
 primary key (id), -- id garantiza la unicidad de los registros en limite_habitaciones
-foreign key (hotel_id) references hoteles(id) on delete cascade, -- -- cada valor en hotel_id y limite_habitaciones corresponda a un id existente en hoteles 
-foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cascade --  -- cada tipo_habitacion_id corresponda a un id existente en tipos_habitaciones
+foreign key (hotel_id) references hoteles(id) on delete cascade,-- cada valor en hotel_id y limite_habitaciones corresponda a un id existente en hoteles 
+foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cascade -- cada tipo_habitacion_id corresponda a un id existente en tipos_habitaciones
 )
 -- "limite_habitaciones es FN3 segun la normalizacion"
 -- 1FN: Todos los valores en las columnas son atómicos.
@@ -156,8 +156,6 @@ foreign key (habitacion_id) references habitaciones(id) on delete cascade -- FOR
 -- 1FN: Todos los valores en las columnas son atómicos.
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
-
-
 
 -- si es necesario 
 drop database reserva_hoteles;
