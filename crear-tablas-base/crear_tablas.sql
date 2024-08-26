@@ -105,7 +105,6 @@ foreign key (tipo_id) references tipos_habitaciones(id) on delete cascade -- est
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
 
 
-
 -- Tablas-reservaciones-huespedes
 
 -- reservaciones
@@ -121,6 +120,7 @@ foreign key (cliente_id) references clientes(id) on delete cascade, -- asegura q
 foreign key (hotel_id) references hoteles(id) on delete cascade,-- garantiza que cada reservación esté asociada a un hotel válido
 constraint reservacion_unica unique (id, cliente_id, fecha_entrada, fecha_salida) -- reservacion_unica asegura que no haya dos reservaciones iguales en la misma fecha
 ); 
+-- Agregar columna de día
 -- "reservaciones es FN3 segun la normalizacion"
 -- 1FN: Todos los valores en las columnas son atómicos.
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
