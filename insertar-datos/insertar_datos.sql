@@ -53,3 +53,12 @@ VALUES
 (1, 1),
 (2, 3),
 (3, 2);
+-- Datos de prueba para la tabla 'limite_habitaciones'
+SELECT * FROM tipos_habitaciones;
+INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
+VALUES
+(1, 1, 10),
+(1, 2, 5),
+(2, 1, 8),
+(2, 3, 12),
+(3, 2, 15);
