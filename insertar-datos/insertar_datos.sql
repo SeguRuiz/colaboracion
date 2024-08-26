@@ -1,7 +1,7 @@
 -- Monica
 USE reserva_hoteles;
 --para mirar los datos de cualquier tabla
-SELECT * FROM 
+SELECT * FROM; 
 -- Datos de prueba para la tabla 'clientes'
 INSERT INTO clientes (nombre, apellidos, correo_electronico, telefono_personal)
 VALUES 
@@ -24,9 +24,9 @@ VALUES
 -- Datos de prueba para la tabla 'tipos_habitaciones'
 INSERT INTO tipos_habitaciones (nombre, limite_huespedes, precio)
 VALUES 
-('Sencilla', 1, 60.000),
-('Doble', 2, 80.000),
-('Suite', 4, 200.000);
+('Sencilla', 1, 60000),
+('Doble', 2, 80000),
+('Suite', 4, 200000);
 
 -- Datos de prueba para la tabla 'limite_habitaciones'
 INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
@@ -43,8 +43,9 @@ VALUES
 INSERT INTO habitaciones (hotel_id, tipo_id, estado, telefono)
 VALUES 
 (1, 1, 'disponible', '2663-9021'),
-(1, 2, 'ocupada', '2590-2020'),
-(2, 3, 'reservada', '2080-7088');
+(1, 2, 'disponible', '2590-2020'),
+(2, 3, 'ocupada', '2080-7088'),
+(2, 2, 'disponible', '4567-9040');;
 
 -- Datos de prueba para la tabla 'reservaciones'
 INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida, activa)
@@ -52,6 +53,7 @@ VALUES
 (1, 1, '2024-09-01', '2024-09-05', true),
 (2, 2, '2024-09-10', '2024-09-15', true),
 (3, 1, '2024-09-20', '2024-09-25', false);
+
 -- Datos de prueba para la tabla 'huespedes'
 
 INSERT INTO huespedes (hotel_id, reservacion_id)
@@ -66,11 +68,12 @@ VALUES
 (2, 3),
 (3, 2);
 -- Datos de prueba para la tabla 'limite_habitaciones'
-SELECT * FROM tipos_habitaciones;
-INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
-VALUES
-(1, 1, 10),
-(1, 2, 5),
-(2, 1, 8),
-(2, 3, 12),
-(3, 2, 15);
+-- SELECT * FROM tipos_habitaciones;
+
+-- INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
+-- VALUES
+-- (1, 1, 10),
+-- (1, 2, 5),
+-- (2, 1, 8),
+-- (2, 3, 12),
+-- (3, 2, 15);

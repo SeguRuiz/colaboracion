@@ -96,7 +96,7 @@ foreign key (cliente_id) references clientes(id) on delete cascade,
 foreign key (hotel_id) references hoteles(id) on delete cascade,
 constraint reservacion_unica unique (id, cliente_id, fecha_entrada, fecha_salida)
 ); 
-
+-- Agregar columna de día
 
 -- huespedes
 CREATE TABLE huespedes (
