@@ -7,7 +7,7 @@ CREATE PROCEDURE reservar_habitacion (IN id_reserva int, IN id_habitacion int)
 BEGIN
 
 INSERT INTO reservas_habitaciones (reservacion_id, habitacion_id) VALUES (id_reserva, id_habitacion);
-UPDATE habitaciones SET estado = 2 WHERE id = id_habitacion;
+UPDATE habitaciones SET estado_id = 2 WHERE id = id_habitacion;
 SELECT * FROM reservas_habitaciones;
 
 END;
@@ -29,6 +29,7 @@ END IF;
 END;
 
 call agregar_reservacion (3, 2, 4, '2024-10-01', '2024-12-25');
+
 select * from reservaciones;
 
 
@@ -38,7 +39,7 @@ drop procedure reservar_habitacion;
 
 delete from reservaciones where id < 10;
 delete from reservas_habitaciones where id < 10;
-update habitaciones set estado = 'disponible' where id < 10;
+update habitaciones set estado_id = 3 where id < 10;
 
 -- ■ Consultar la disponibilidad de habitaciones por fecha.
 
