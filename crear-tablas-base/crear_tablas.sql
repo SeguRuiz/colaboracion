@@ -79,8 +79,8 @@ hotel_id int not null,
 tipo_habitacion_id int not null,
 limite_habitaciones int not null,
 primary key (id), -- id garantiza la unicidad de los registros en limite_habitaciones
-foreign key (hotel_id) references hoteles(id) on delete cascade, -- -- cada valor en hotel_id y limite_habitaciones corresponda a un id existente en hoteles 
-foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cascade --  -- cada tipo_habitacion_id corresponda a un id existente en tipos_habitaciones
+foreign key (hotel_id) references hoteles(id) on delete cascade,-- cada valor en hotel_id y limite_habitaciones corresponda a un id existente en hoteles 
+foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cascade -- cada tipo_habitacion_id corresponda a un id existente en tipos_habitaciones
 )
 -- "limite_habitaciones es FN3 segun la normalizacion"
 -- 1FN: Todos los valores en las columnas son atómicos.
@@ -105,7 +105,6 @@ foreign key (tipo_id) references tipos_habitaciones(id) on delete cascade -- est
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
 
 
-
 -- Tablas-reservaciones-huespedes
 
 -- reservaciones
@@ -121,6 +120,7 @@ foreign key (cliente_id) references clientes(id) on delete cascade, -- asegura q
 foreign key (hotel_id) references hoteles(id) on delete cascade,-- garantiza que cada reservación esté asociada a un hotel válido
 constraint reservacion_unica unique (id, cliente_id, fecha_entrada, fecha_salida) -- reservacion_unica asegura que no haya dos reservaciones iguales en la misma fecha
 ); 
+-- Agregar columna de día
 -- "reservaciones es FN3 segun la normalizacion"
 -- 1FN: Todos los valores en las columnas son atómicos.
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
@@ -156,8 +156,6 @@ foreign key (habitacion_id) references habitaciones(id) on delete cascade -- FOR
 -- 1FN: Todos los valores en las columnas son atómicos.
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
-
-
 
 -- si es necesario 
 drop database reserva_hoteles;
