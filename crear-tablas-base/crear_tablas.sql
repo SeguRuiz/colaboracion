@@ -93,7 +93,10 @@ id int auto_increment not null,
 nombre_estado varchar(50) not null,
 primary key (id)
 )
-
+-- "estado_habitacion es FN3 segun la normalizacion"
+-- 1FN: Todos los valores en las columnas con unicos.
+-- 2FN: Todas las columnas dependen de la llave primaria ID.
+-- 3FN: No hay dependencias transitivas.
 -- habitaciones
 CREATE TABLE habitaciones (
 id int auto_increment not null,
