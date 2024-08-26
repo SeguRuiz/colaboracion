@@ -38,14 +38,21 @@ VALUES
 (2, 2, 10),
 (2, 3, 10)
 
+-- Datos de prueba para la tablas 'estado_habitacion'
+INSERT INTO estado_habitacion (nombre_estado)
+VALUES
+('ocupada'),
+('reservada'),
+('disponible')
+
 
 -- Datos de prueba para la tabla 'habitaciones'
-INSERT INTO habitaciones (hotel_id, tipo_id, estado, telefono)
+INSERT INTO habitaciones (hotel_id, tipo_id, estado_id, telefono)
 VALUES 
-(1, 1, 'disponible', '2663-9021'),
-(1, 2, 'disponible', '2590-2020'),
-(2, 3, 'ocupada', '2080-7088'),
-(2, 2, 'disponible', '4567-9040');;
+(1, 1, 3, '2663-9021'),
+(1, 2, 3, '2590-2020'),
+(2, 3, 3, '2080-7088'),
+(2, 2, 3, '4567-9040');
 
 -- Datos de prueba para la tabla 'reservaciones'
 INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida, activa)
@@ -67,13 +74,5 @@ VALUES
 (1, 1),
 (2, 3),
 (3, 2);
--- Datos de prueba para la tabla 'limite_habitaciones'
--- SELECT * FROM tipos_habitaciones;
 
--- INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
--- VALUES
--- (1, 1, 10),
--- (1, 2, 5),
--- (2, 1, 8),
--- (2, 3, 12),
--- (3, 2, 15);
+
