@@ -14,7 +14,7 @@ nombre varchar(50) not null,
 apellidos varchar(100),
 correo_electronico varchar(50) not null,
 telefono_personal varchar(30),
-primary key (id), --id es la clave primaria porque es un identificador unico de cada cliente 
+primary key (id), -- id es la clave primaria porque es un identificador unico de cada cliente 
 constraint cliente_unico unique (id, nombre, apellidos) -- cliente_unico asegura que no haya duplicados en la combinación de id, nombre, y apellidos
 );
 -- "clientes en normalizacion es 3FN"
@@ -28,7 +28,7 @@ id int auto_increment not null,
 nombre varchar(50) not null,
 apellidos varchar(100),
 correo_empresarial varchar(100) not null,
-primary key (id), --id es la clave primaria porque es un identificador unico de cada administrador
+primary key (id), -- id es la clave primaria porque es un identificador unico de cada administrador
 constraint admin_unico unique (id, nombre, apellidos) -- la constraint admin_unico evita datos dobles en la combinacion de id, nombre, apellidos
 );
 -- "administradores es FN3 segun la normalizacion"
@@ -87,17 +87,24 @@ foreign key (tipo_habitacion_id) references tipos_habitaciones(id) on delete cas
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
 
+-- estado_habitacion
+CREATE TABLE estado_habitacion (
+id int auto_increment not null,
+nombre_estado varchar(50) not null,
+primary key (id)
+)
 
 -- habitaciones
 CREATE TABLE habitaciones (
 id int auto_increment not null,
 hotel_id int not null,
 tipo_id int not null,
-estado varchar(35) default 'disponible', -- el valor por defecto 'disponible' para nuevas habitaciones.
+estado_id int default 3 not null, -- el valor por defecto 'disponible' para nuevas habitaciones.
 telefono varchar(30) not null,
 primary key (id), -- clave primaria id para  identificar cada habitacion de forma unica 
 foreign key (hotel_id) references hoteles(id) on delete cascade, -- esta constraint (hotel_id) asegura la relación válida con la tabla hoteles.
-foreign key (tipo_id) references tipos_habitaciones(id) on delete cascade -- esta constraint (tipo_id) garantiza la relación válida con la tabla tipos_habitaciones.
+foreign key (tipo_id) references tipos_habitaciones(id) on delete cascade, -- esta constraint (tipo_id) garantiza la relación válida con la tabla tipos_habitaciones.
+foreign key (estado_id) references estado_habitacion(id) on delete cascade
 );
 -- "habitaciones es FN3 segun la normalizacion"
 -- 1FN: Todos los valores en las columnas son atómicos.
