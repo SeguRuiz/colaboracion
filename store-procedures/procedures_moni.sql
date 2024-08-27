@@ -1,7 +1,7 @@
 -- Calcular la ocupación de un hotel en un rango de fechas.
 CREATE Procedure ocupacion_hotel ( IN idHotel INT, IN fechaInicio DATE, IN fechaFin DATE )
 BEGIN
-    SELECT habitaciones.id AS habitacion_id, habitaciones.estado, COUNT(reservas_habitaciones.id) AS num_reservas,
+    SELECT habitaciones.id AS habitacion_id, habitaciones.estado_id, COUNT(reservas_habitaciones.id) AS num_reservas,
         (SELECT COUNT(*) FROM habitaciones WHERE habitaciones.hotel_id = idHotel) AS total_habitaciones,
         hoteles.nombre AS nombre_hotel
     FROM 
@@ -20,7 +20,7 @@ BEGIN
         habitaciones.id 
     ORDER BY 
         habitaciones.id;
-
+END;
 DROP PROCEDURE IF EXISTS ocupacion_hotel;
 
 -- Ejecutar el Procedimiento con el id del hotel y el rango de fecha
@@ -44,7 +44,8 @@ SELECT * FROM reservas_habitaciones WHERE reservacion_id = 3;
 SELECT * FROM habitaciones WHERE id IN (SELECT habitacion_id FROM reservas_habitaciones WHERE reservacion_id = 3);
 ------------------------------------------------------------------------------------------------------------------------
 -- eliminar la reserva por id
-CALL cancelar_reserva(3);
+CALL cancelar_reserva(4);
+DROP PROCEDURE cancelar_reserva;
 -------------------------------------------------------------------------------------------------------------------------
 -- verificacion de que la reservacion se elimino
 SELECT * FROM reservaciones WHERE id = 3;

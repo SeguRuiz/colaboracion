@@ -98,6 +98,7 @@ primary key (id)
 -- 2FN: Todas las columnas dependen de la llave primaria ID.
 -- 3FN: No hay dependencias transitivas.
 -- habitaciones
+
 CREATE TABLE habitaciones (
 id int auto_increment not null,
 hotel_id int not null,
