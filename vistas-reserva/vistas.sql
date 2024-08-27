@@ -19,5 +19,13 @@ VALUES
 
 SELECT * FROM reservaciones_hoy;
 
+-- Vista que muestra las habitaciones ocupadas con sus fechas de reservacion
+CREATE VIEW habitaciones_reservadas_fechas AS 
+SELECT habitacion_id, reservaciones.cliente_id, reservaciones.fecha_entrada, reservaciones.fecha_salida, reservaciones.activa FROM 
+reservas_habitaciones LEFT JOIN 
+reservaciones ON 
+reservas_habitaciones.reservacion_id = reservaciones.id;  
 
-   
+-- Para ver y eliminar la vista
+SELECT * FROM habitaciones_reservadas_fechas;
+DROP VIEW habitaciones_reservadas_fechas;

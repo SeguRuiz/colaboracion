@@ -1,7 +1,7 @@
 -- Monica
 USE reserva_hoteles;
 --para mirar los datos de cualquier tabla
-SELECT * FROM; 
+-- SELECT * FROM; 
 -- Datos de prueba para la tabla 'clientes'
 INSERT INTO clientes (nombre, apellidos, correo_electronico, telefono_personal)
 VALUES 

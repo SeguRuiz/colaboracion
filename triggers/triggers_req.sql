@@ -24,3 +24,18 @@ SELECT * FROM reservaciones;
 SELECT * FROM habitaciones_reservadas_fechas
 
 SELECT * FROM reservas_habitaciones;
+
+-- fecha de reservacion inmutable
+CREATE TRIGGER update_inmutable_reservas BEFORE UPDATE ON reservaciones
+FOR EACH ROW
+BEGIN
+SET NEW.fecha_agregacion = CURDATE();
+END;
+
+CREATE TRIGGER insert_inmutable_reservas BEFORE INSERT ON reservaciones
+FOR EACH ROW
+BEGIN
+SET NEW.fecha_agregacion = CURDATE();
+END;
+
+drop trigger insert_inmutable_reservas

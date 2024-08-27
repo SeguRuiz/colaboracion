@@ -126,6 +126,7 @@ hotel_id int not null,
 fecha_entrada date not null,
 fecha_salida date not null,
 activa bool default true,
+fecha_agregacion date DEFAULT (CURDATE()),
 primary key (id), -- id para identificar de forma única cada reservación dentro del sistema.
 foreign key (cliente_id) references clientes(id) on delete cascade, -- asegura que cada reservación esté vinculada a un cliente válido
 foreign key (hotel_id) references hoteles(id) on delete cascade,-- garantiza que cada reservación esté asociada a un hotel válido
