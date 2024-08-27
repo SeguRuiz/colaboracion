@@ -8,7 +8,7 @@ BEGIN
 
 INSERT INTO reservas_habitaciones (reservacion_id, habitacion_id) VALUES (id_reserva, id_habitacion);
 UPDATE habitaciones SET estado_id = 2 WHERE id = id_habitacion;
-SELECT * FROM reservas_habitaciones;
+
 
 END;
 
@@ -17,7 +17,7 @@ BEGIN
 
 IF NOT EXISTS (SELECT * FROM reservaciones WHERE id_cliente = cliente_id AND id_hotel = hotel_id AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida) THEN
 INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida) VALUES (id_cliente, id_hotel, fecha_entry, fecha_out);
-SELECT * FROM reservaciones;
+
 END IF;
 
 SELECT id INTO @id_reserva FROM reservaciones WHERE id_cliente = cliente_id AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida AND id_hotel = hotel_id LIMIT 1;
@@ -28,7 +28,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (3, 2, 4, '2024-10-01', '2024-12-25');
+call agregar_reservacion (1, 1, 3, '2024-09-11', '2024-11-05');
 
 select * from reservaciones;
 
@@ -62,7 +62,7 @@ END;
 
 CALL verificar_habitaciones('2024-05-12');
 
-drop table tipos_habitaciones
+
 
 -- eliminar procedure
 drop procedure verificar_habitaciones; 
