@@ -29,13 +29,14 @@ CALL ocupacion_hotel(2, '2024-03-31', '2024-09-25');
 ---------------------------------------------------------------------------------------------------------------------
 -- Cancelar una reserva existente.
 
-CREATE PROCEDURE cancelar_reserva (IN idReservacion INT)
 
-BEGIN UPDATE reservaciones SET activa = FALSE WHERE id = idReservacion;
+CREATE PROCEDURE cancelar_reserva (
+    IN idReservacion INT
+)
+BEGIN 
+    UPDATE reservaciones SET activa = FALSE WHERE id = idReservacion;
 
-DELETE FROM reservas_habitaciones WHERE reservacion_id = idReservacion;
-
-UPDATE habitaciones h JOIN reservas_habitaciones rh ON h.id = rh.habitacion_id SET h.estado = 'disponible' WHERE rh.reservacion_id
+END;
 -------------------------------------------------------------------------------------------------------------------------------
 -- estado actual de la reserva
 SELECT * FROM reservaciones WHERE id = 3; 
@@ -49,3 +50,5 @@ CALL cancelar_reserva(3);
 SELECT * FROM reservaciones WHERE id = 3;
 SELECT * FROM reservas_habitaciones WHERE reservacion_id = 3;
 SELECT * FROM habitaciones WHERE id IN (SELECT habitacion_id FROM reservas_habitaciones WHERE reservacion_id = 3);
+
+DROP PROCEDURE IF EXISTS cancelar_reserva;
