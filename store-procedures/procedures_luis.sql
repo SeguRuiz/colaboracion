@@ -28,7 +28,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (1, 1, 3, '2024-09-11', '2024-11-05');
+call agregar_reservacion (1, 2, 3, '2024-12-01', '2024-12-15');
 
 select * from reservaciones;
 
@@ -45,7 +45,7 @@ update habitaciones set estado_id = 3 where id < 10;
 
 -- Vista que muestra las habitaciones ocupadas con sus fechas de reservacion
 CREATE VIEW habitaciones_reservadas_fechas AS 
-SELECT habitacion_id, reservaciones.cliente_id, reservaciones.fecha_entrada, reservaciones.fecha_salida FROM 
+SELECT habitacion_id, reservaciones.cliente_id, reservaciones.fecha_entrada, reservaciones.fecha_salida, reservaciones.activa FROM 
 reservas_habitaciones LEFT JOIN 
 reservaciones ON 
 reservas_habitaciones.reservacion_id = reservaciones.id;  
@@ -57,10 +57,10 @@ DROP VIEW habitaciones_reservadas_fechas;
 -- Procedure 
 CREATE PROCEDURE verificar_habitaciones (IN fecha_consulta date)
 BEGIN
-SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fecha_entrada AND fecha_salida; 
+SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fecha_entrada AND fecha_salida OR activa = false; 
 END;
 
-CALL verificar_habitaciones('2024-05-12');
+CALL verificar_habitaciones('2024-10-12');
 
 
 
