@@ -30,7 +30,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (2, 5, '2024-03-13', '2024-10-15');
+call agregar_reservacion (2, 2, '2024-02-13', '2024-11-11');
 
 select * from reservaciones;
 
@@ -38,10 +38,6 @@ select * from reservaciones;
 -- Eliminar procedures 
 drop procedure agregar_reservacion;
 drop procedure reservar_habitacion;
-
-delete from reservaciones where id < 10;
-delete from reservas_habitaciones where id < 10;
-update habitaciones set estado_id = 3 where id < 10;
 
 -- ■ Consultar la disponibilidad de habitaciones por fecha.
 
@@ -52,7 +48,6 @@ SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fe
 END;
 
 CALL verificar_habitaciones('2024-10-12');
-
 
 
 -- eliminar procedure
