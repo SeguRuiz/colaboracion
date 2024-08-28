@@ -45,7 +45,6 @@ VALUES
 ('reservada'),
 ('disponible')
 
-
 -- Datos de prueba para la tabla 'habitaciones'
 INSERT INTO habitaciones (hotel_id, tipo_id, estado_id, telefono)
 VALUES 
