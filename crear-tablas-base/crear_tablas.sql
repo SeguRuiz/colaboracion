@@ -1,12 +1,10 @@
 -- Luis
 
 -- Base de datos
+DELIMITER//
 CREATE DATABASE reserva_hoteles;
-
 USE reserva_hoteles;
-
 -- Tablas-personas
-
 -- clientes 
 CREATE TABLE clientes (
 id int auto_increment not null,
@@ -98,6 +96,7 @@ primary key (id)
 -- 2FN: Todas las columnas dependen de la llave primaria ID.
 -- 3FN: No hay dependencias transitivas.
 -- habitaciones
+
 CREATE TABLE habitaciones (
 id int auto_increment not null,
 hotel_id int not null,
@@ -125,6 +124,7 @@ hotel_id int not null,
 fecha_entrada date not null,
 fecha_salida date not null,
 activa bool default true,
+fecha_agregacion date DEFAULT (CURDATE()),
 primary key (id), -- id para identificar de forma única cada reservación dentro del sistema.
 foreign key (cliente_id) references clientes(id) on delete cascade, -- asegura que cada reservación esté vinculada a un cliente válido
 foreign key (hotel_id) references hoteles(id) on delete cascade,-- garantiza que cada reservación esté asociada a un hotel válido
@@ -166,6 +166,10 @@ foreign key (habitacion_id) references habitaciones(id) on delete cascade -- FOR
 -- 1FN: Todos los valores en las columnas son atómicos.
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
-
 -- si es necesario 
+DELIMITER//
+
 drop database reserva_hoteles;
+
+-- CALL iniciar_base_de_datos();
+

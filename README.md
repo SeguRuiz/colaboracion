@@ -152,6 +152,6 @@
 - Se eligio como PRIMARY KEY a (id) porque se necesita un identificador unico y el id evita tener en el sistema dos registros con el mismo id.
 - Se eligio la FOREIGN KEY (reservacion_id) para garantizar que cada reserva de habitacion que haga un cliente este vinulada a una reservacion que sea valida, para mantener la consistencia en la gestión de las reservaciones.
 - Se opto por crear la FOREIGN KEY (habitacion_id), para asegurar que las reservaciones hechas esten vinculadas a una habitacion valida, con el proposito de mantener la integridad de los datos que estan en la tabla habitacion y sus reservaciones correspondientes 
-## 10. Tabla estado_habitacion
+## 10. Tabla estado_habitacion // agregar al mapa
 -  Se eligio como PRIMARY KEY a (id) porque se necesita un identificador unico y el id evita tener en el sistema dos registros con el mismo id.
 - se creo porque define una constraint única en la columna nombre_estado,para que no pueda haber dos registros en la tabla con el mismo valor en nombre_estado.

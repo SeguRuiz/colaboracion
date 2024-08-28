@@ -8,19 +8,21 @@ BEGIN
 
 INSERT INTO reservas_habitaciones (reservacion_id, habitacion_id) VALUES (id_reserva, id_habitacion);
 UPDATE habitaciones SET estado_id = 2 WHERE id = id_habitacion;
-SELECT * FROM reservas_habitaciones;
+
 
 END;
 
-CREATE PROCEDURE agregar_reservacion (IN id_cliente int, IN id_hotel int, IN id_habitacion int, IN fecha_entry date, IN fecha_out date)
+CREATE PROCEDURE agregar_reservacion (IN id_cliente int, IN id_habitacion int, IN fecha_entry date, IN fecha_out date)
 BEGIN
 
-IF NOT EXISTS (SELECT * FROM reservaciones WHERE id_cliente = cliente_id AND id_hotel = hotel_id AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida) THEN
-INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida) VALUES (id_cliente, id_hotel, fecha_entry, fecha_out);
-SELECT * FROM reservaciones;
+SELECT hotel_id INTO @id_hotel FROM habitaciones WHERE id = id_habitacion;
+
+IF NOT EXISTS (SELECT * FROM reservaciones WHERE id_cliente = cliente_id AND hotel_id = @id_hotel AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida) THEN
+INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida) VALUES (id_cliente, @id_hotel, fecha_entry, fecha_out);
+
 END IF;
 
-SELECT id INTO @id_reserva FROM reservaciones WHERE id_cliente = cliente_id AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida AND id_hotel = hotel_id LIMIT 1;
+SELECT id INTO @id_reserva FROM reservaciones WHERE id_cliente = cliente_id AND fecha_entry = fecha_entrada AND fecha_out = fecha_salida AND @id_hotel = hotel_id LIMIT 1;
 
 IF NOT EXISTS (SELECT reservacion_id, habitacion_id FROM reservas_habitaciones WHERE reservacion_id = @id_reserva AND habitacion_id = id_habitacion) THEN
 CALL reservar_habitacion(@id_reserva, id_habitacion);
@@ -28,7 +30,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (3, 2, 4, '2024-10-01', '2024-12-25');
+call agregar_reservacion (2, 2, '2024-02-13', '2024-11-11');
 
 select * from reservaciones;
 
@@ -37,32 +39,17 @@ select * from reservaciones;
 drop procedure agregar_reservacion;
 drop procedure reservar_habitacion;
 
-delete from reservaciones where id < 10;
-delete from reservas_habitaciones where id < 10;
-update habitaciones set estado_id = 3 where id < 10;
-
 -- ■ Consultar la disponibilidad de habitaciones por fecha.
-
--- Vista que muestra las habitaciones ocupadas con sus fechas de reservacion
-CREATE VIEW habitaciones_reservadas_fechas AS 
-SELECT habitacion_id, reservaciones.cliente_id, reservaciones.fecha_entrada, reservaciones.fecha_salida FROM 
-reservas_habitaciones LEFT JOIN 
-reservaciones ON 
-reservas_habitaciones.reservacion_id = reservaciones.id;  
-
--- Para ver y eliminar la vista
-SELECT * FROM habitaciones_reservadas_fechas;
-DROP VIEW habitaciones_reservadas_fechas;
 
 -- Procedure 
 CREATE PROCEDURE verificar_habitaciones (IN fecha_consulta date)
 BEGIN
-SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fecha_entrada AND fecha_salida; 
+SELECT * from habitaciones_reservadas_fechas WHERE fecha_consulta NOT BETWEEN fecha_entrada AND fecha_salida OR activa = false; 
 END;
 
-CALL verificar_habitaciones('2024-05-12');
+CALL verificar_habitaciones('2024-10-12');
 
-drop table tipos_habitaciones
 
 -- eliminar procedure
 drop procedure verificar_habitaciones; 
+
