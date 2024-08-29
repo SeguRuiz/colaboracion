@@ -9,13 +9,8 @@ SELECT
 FROM 
     reservaciones r
 WHERE 
-    r.fecha_entrada = CURRENT_DATE;
-INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida, activa)
-VALUES 
-(1, 1, CURDATE(), '2024-09-05', true),
-(3, 1, "2024-09-20", '2024-09-25', TRUE),
-(3, 1, "2024-08-26", '2024-09-25', TRUE)
-;
+    r.fecha_agregacion = CURDATE();
+
 
 SELECT * FROM reservaciones_hoy;
 
@@ -55,3 +50,47 @@ GROUP BY hotel_id;
 SELECT * FROM ocupacion_hoteles;
 
 DROP VIEW ocupacion_hoteles;
+
+-- numero de reservaciones de los clientes
+CREATE VIEW reservaciones_clientes AS
+SELECT clientes.*, COUNT(reservaciones.id) AS numero_reservaciones
+FROM clientes LEFT JOIN 
+reservaciones ON reservaciones.cliente_id = clientes.id
+GROUP BY clientes.id
+
+DROP VIEW reservaciones_clientes;
+
+SELECT * FROM reservaciones_clientes;
+
+-- reservaciones diarias por hotel
+CREATE VIEW reservaciones_hoteles AS 
+SELECT hotel_id,fecha_agregacion, COUNT(id) AS numero_reservaciones
+FROM reservaciones GROUP BY
+fecha_agregacion, hotel_id;
+
+SELECT * FROM reservaciones_hoteles
+
+DROP VIEW reservaciones_hoteles
+
+-- Info_habitaciones
+CREATE VIEW info_habitaciones AS
+SELECT habitaciones.id, hoteles.nombre AS nombre_hotel, tipos_habitaciones.nombre AS nombre_habitacion FROM habitaciones
+LEFT JOIN tipos_habitaciones
+ON habitaciones.tipo_id = tipos_habitaciones.id 
+LEFT JOIN hoteles
+ON habitaciones.hotel_id = hoteles.id
+
+SELECT * FROM info_habitaciones;
+
+DROP VIEW info_habitaciones
+
+-- Verificar limites de hoteles
+CREATE VIEW limite_hoteles AS 
+SELECT hotel_id,SUM(tipos_habitaciones.limite_huespedes * limite_habitaciones) AS limite_huespedes_hotel FROM limite_habitaciones 
+LEFT JOIN tipos_habitaciones ON limite_habitaciones.tipo_habitacion_id = tipos_habitaciones.id
+GROUP BY hotel_id;
+
+
+SELECT * FROM limite_hoteles;
+
+DROP VIEW limite_hoteles;

@@ -1,9 +1,11 @@
 -- Luis
 
 -- Base de datos
-DELIMITER//
+
 CREATE DATABASE reserva_hoteles;
 USE reserva_hoteles;
+
+
 -- Tablas-personas
 -- clientes 
 CREATE TABLE clientes (
@@ -167,7 +169,7 @@ foreign key (habitacion_id) references habitaciones(id) on delete cascade -- FOR
 -- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
 -- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
 -- si es necesario 
-DELIMITER//
+
 
 drop database reserva_hoteles;
 
