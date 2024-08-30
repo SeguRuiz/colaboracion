@@ -11,7 +11,7 @@ AND cliente_id IN (SELECT id FROM clientes WHERE correo_electronico = 'marcos.ro
 
 -- ○ Consulta para identificar el hotel con la mayor ocupación en el mes anterior.
 SELECT hotel_id, SUM(limite_huespedes) AS ocupacion
-FROM habitaciones_reservadas_fechas
+FROM habitaciones_reservadas_fechas 
 WHERE activa = TRUE AND ADDDATE(CURDATE(), INTERVAL -1 MONTH) BETWEEN fecha_entrada AND fecha_salida 
 GROUP BY hotel_id
 ORDER BY ocupacion DESC
