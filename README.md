@@ -155,3 +155,5 @@
 ## 10. Tabla estado_habitacion // agregar al mapa
 -  Se eligio como PRIMARY KEY a (id) porque se necesita un identificador unico y el id evita tener en el sistema dos registros con el mismo id.
 - se creo porque define una constraint única en la columna nombre_estado,para que no pueda haber dos registros en la tabla con el mismo valor en nombre_estado.
+## diagrama Entidad-Relación (ER):
+Entidad-Relación (ER):
