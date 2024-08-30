@@ -48,7 +48,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (1, 3, '2024-08-30', '2024-10-29');
+call agregar_reservacion (4, 1, '2025-07-20', '2025-08-13');
 
 select * from habitaciones_reservadas_fechas;
 

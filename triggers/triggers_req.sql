@@ -30,7 +30,8 @@ BEGIN
 SET NEW.fecha_agregacion = CURDATE();
 END;
 
-drop trigger insert_inmutable_reservas
+drop trigger insert_inmutable_reservas;
+drop trigger update_inmutable_reservas;
 
 -- evitar fechas imposibles y reservaciones que chocan
 
