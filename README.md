@@ -157,3 +157,4 @@
 - se creo porque define una constraint única en la columna nombre_estado,para que no pueda haber dos registros en la tabla con el mismo valor en nombre_estado.
 ## diagrama Entidad-Relación (ER):
 Entidad-Relación (ER):
+![image](https://github.com/user-attachments/assets/4902ddf3-fc72-4b02-b8ea-10a88e55758e)
