@@ -25,7 +25,7 @@ BEGIN
     END IF;
 END;
 
-DROP PROCEDURE comprobar_fechas
+DROP PROCEDURE comprobar_fechas;
 
 -- Procedure para realizar la reservacion en si
 CREATE PROCEDURE agregar_reservacion (IN id_cliente int, IN id_habitacion int, IN fecha_entry date, IN fecha_out date)
@@ -48,7 +48,7 @@ END IF;
 
 END;
 
-call agregar_reservacion (1, 3, '2023-08-30', '2024-10-29');
+call agregar_reservacion (4, 1, '2025-07-20', '2025-08-13');
 
 select * from habitaciones_reservadas_fechas;
 

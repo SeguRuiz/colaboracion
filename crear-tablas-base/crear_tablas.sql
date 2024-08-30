@@ -140,19 +140,6 @@ constraint reservacion_unica unique (id, cliente_id, fecha_entrada, fecha_salida
 
 
 
--- huespedes
-CREATE TABLE huespedes (
-id int auto_increment not null,
-hotel_id int not null,
-reservacion_id int not null,
-primary key (id), -- id como identificador unico del huesped
-foreign key (hotel_id) references hoteles(id) on delete cascade,  -- asegura que cada hotel_id en huespedes esté asociado a un hotel válido
-foreign key (reservacion_id) references reservaciones(id) on delete cascade -- esta FOREIGN KEY para que cada huésped esté vinculado a una reservación válida.
-);
--- "huespedes es FN3 segun la normalizacion"
--- 1FN: Todos los valores en las columnas son atómicos.
--- 2FN: Todas las columnas dependen completamente de la llave primaria (id).
--- 3FN: No hay dependencias transitivas, todas las columnas dependen únicamente de la llave primaria.
 
 
 -- reservacion habitacion
