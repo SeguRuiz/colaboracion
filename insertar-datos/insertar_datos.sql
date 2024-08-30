@@ -1,7 +1,7 @@
 -- Monica
 USE reserva_hoteles;
 --para mirar los datos de cualquier tabla
-SELECT * FROM clientes; 
+-- SELECT * FROM clientes; 
 -- Datos de prueba para la tabla 'clientes'
 INSERT INTO clientes (nombre, apellidos, correo_electronico, telefono_personal)
 VALUES 
@@ -18,7 +18,8 @@ VALUES
 ('Monica', 'Barrios', 'admimonica.gomez@hotelcorp.com'),
 ('keylor', 'Monge', 'admiluis.gomez@hotelcorp.com'),
 ('steven', 'Arias', 'admiluis.gomez@hotelcorp.com'),
-('Marta', 'Lara', 'admimarta.lara@hotelcorp.com');
+('Marta', 'Lara', 'admimarta.lara@hotelcorp.com'),
+('César', 'Miranda', 'admicesar.miranda@hotelcorp.com')
 
 
 -- Datos de prueba para la tabla 'hoteles'
@@ -40,57 +41,73 @@ VALUES
 -- Datos de prueba para la tabla 'limite_habitaciones'
 INSERT INTO limite_habitaciones (hotel_id, tipo_habitacion_id, limite_habitaciones)
 VALUES
-(6,1,6),
-(11,2,7),
-(16,3,3),
-(7,4,2),
-(12,5,1);
-SELECT id FROM clientes;
-SELECT id FROM tipos_habitaciones;
-
+(1,1,6),
+(1,2,4),
+(1,3,5),
+(2,1,7),
+(2,2,4),
+(2,3,5),
+(3,1,10),
+(3,2,5),
+(3,3,7),
+(4,1,5),
+(4,2,10),
+(4,3,9),
+(5,1,3),
+(5,2,4),
+(5,3,10),
+(6,1,10),
+(6,2,7),
+(6,3,4);
 
 -- Datos de prueba para la tablas 'estado_habitacion'
 INSERT INTO estado_habitacion (nombre_estado)
 VALUES
 ('ocupada'),
 ('reservada'),
-('disponible')
+('disponible');
 
 -- Datos de prueba para la tabla 'habitaciones'
 INSERT INTO habitaciones (hotel_id, tipo_id, estado_id, telefono)
 VALUES 
-(6, 1, 3, '2663-9021'),
-(20, 2, 3, '2590-2020'),
-(19, 3, 3, '2080-7088'),
-(10, 2, 3, '4567-9040'),
-(14, 3, 3, '4563-7840');
+(1, 1, 3, '2663-9021'),
+(1, 3, 3, '2363-7898'),
+(1, 2, 3, '2363-7890'),
+(2, 2, 3, '2590-2020'),
+(2, 1, 3, '3056-2020'),
+(2, 3, 3, '7856-2026'),
+(3, 3, 3, '2080-7088'),
+(3, 1, 3, '5678-2320'),
+(3, 2, 3, '3456-7990'),
+(3, 3, 3, '6786-8920'),
+(4, 2, 3, '4567-9040'),
+(4, 1, 3, '6789-2345'),
+(5, 3, 3, '4563-7840'),
+(5, 1, 3, '4579-7823'),
+(6, 1, 3, '5656-2020'),
+(6, 3, 3, '4567-2236');
 
 
 -- Datos de prueba para la tabla 'reservaciones'
-INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida, activa)
+INSERT INTO reservaciones (cliente_id, hotel_id, fecha_entrada, fecha_salida,fecha_agregacion, activa)
 VALUES 
-(1, 10, '2024-07-01', '2024-09-05', true),
-(3, 20, '2024-07-29', '2024-07-29', true),
-(3, 21, '2024-09-20', '2024-09-25', false),
-(1, 8, '2023-07-15', '2023-07-20', false),
-(2, 9, '2024-07-29', '2024-07-30', true),
-(3, 10, '2023-07-18', '2023-12-31', false),
-(4, 15, '2023-07-22', '2023-06-28', true);
+(1, 1, '2024-05-01', '2024-09-05', '2024-02-13', true),
+(3, 2, '2024-03-29', '2024-10-29', '2024-02-13', true),
+(4, 4, '2025-04-13', '2024-07-12', '2024-07-23', true),
+(2, 3, '2024-11-13', '2024-12-25', '2024-07-01', true),
+(1, 5, '2024-03-13', '2024-04-05', '2024-07-15', false),
+(3, 3, '2023-07-18', '2023-12-31', '2023-05-17', false),
+(4, 4, '2023-07-22', '2023-06-28', '2023-06-23', false);
 
--- Datos de prueba para la tabla 'huespedes'
 
-INSERT INTO huespedes (hotel_id, reservacion_id)
-VALUES 
-(19, 25),
-(20, 26),
-(14, 34);
  -- Datos de prueba para la tabla 'reservas_habitaciones'
 INSERT INTO reservas_habitaciones (reservacion_id, habitacion_id)
 VALUES 
-(28, 16),
-(27, 19),
-(23, 20),
-(24, 17),
-(26, 19),
-(27, 18);
+(1, 2),
+(2, 3),
+(4, 6),
+(3, 8),
+(5,1),
+(6,4),
+(7,3);
 
