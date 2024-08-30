@@ -7,8 +7,8 @@ ORDER BY total_reservas DESC;
 SELECT COUNT(habitaciones.id) AS habitaciones_disponibles FROM habitaciones
 LEFT JOIN reservas_habitaciones ON habitaciones.id = reservas_habitaciones.habitacion_id
 LEFT JOIN reservaciones ON reservas_habitaciones.reservacion_id = reservaciones.id
-WHERE habitaciones.hotel_id = 2 
-    AND habitaciones.estado_id = (SELECT id FROM estado_habitacion WHERE nombre_estado = 'disponible')
+WHERE habitaciones.hotel_id = 6 
+    AND habitaciones.estado_id IN (SELECT id FROM estado_habitacion WHERE nombre_estado = 'disponible')
     AND (reservaciones.fecha_entrada IS NULL OR reservaciones.fecha_salida < '2024-09-05' OR reservaciones.fecha_entrada > '2024-09-01');
 
 -- Consulta para buscar hoteles por nombre

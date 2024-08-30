@@ -17,14 +17,6 @@ DROP TRIGGER actualizar_estado_habitaciones;
 
 UPDATE reservaciones SET activa = FALSE WHERE id = 8;
 
-SELECT * FROM habitaciones
-
-SELECT * FROM reservaciones;
-
-SELECT * FROM habitaciones_reservadas_fechas
-
-SELECT * FROM reservas_habitaciones;
-
 -- fecha de reservacion inmutable
 CREATE TRIGGER update_inmutable_reservas BEFORE UPDATE ON reservaciones
 FOR EACH ROW
@@ -38,4 +30,16 @@ BEGIN
 SET NEW.fecha_agregacion = CURDATE();
 END;
 
-drop trigger insert_inmutable_reservas
+drop trigger insert_inmutable_reservas;
+drop trigger update_inmutable_reservas;
+
+-- evitar fechas imposibles y reservaciones que chocan
+
+CREATE TRIGGER fechas_imposibles BEFORE UPDATE ON reservaciones
+FOR EACH ROW
+BEGIN
+SELECT habitacion_id INTO @id_habitacion FROM reservas_habitaciones WHERE reservas_habitaciones.reservacion_id = NEW.id;
+CALL comprobar_fechas(NEW.fecha_entrada, NEW.fecha_salida, @id_habitacion);
+END;
+
+

@@ -12,8 +12,26 @@ UPDATE habitaciones SET estado_id = 2 WHERE id = id_habitacion;
 
 END;
 
+-- procedure para comprobar valider de fechas
+CREATE PROCEDURE comprobar_fechas (IN fecha1 date,IN fecha2 date, IN habitacion int)
+BEGIN
+    IF fecha1 > fecha2  OR fecha1 < CURDATE() OR fecha2 < CURDATE() THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Rango imposible de fechas';
+    END IF;
+    
+    IF EXISTS(SELECT * FROM habitaciones_reservadas_fechas WHERE habitacion_id = habitacion AND activa = TRUE
+    AND fecha1 BETWEEN fecha_entrada AND fecha_salida OR fecha2 BETWEEN fecha_entrada AND fecha_salida) THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'rango de fechas choca con una reservacion existente activa';
+    END IF;
+END;
+
+DROP PROCEDURE comprobar_fechas;
+
+-- Procedure para realizar la reservacion en si
 CREATE PROCEDURE agregar_reservacion (IN id_cliente int, IN id_habitacion int, IN fecha_entry date, IN fecha_out date)
 BEGIN
+
+CALL comprobar_fechas(fecha_entry, fecha_out, id_habitacion);
 
 SELECT hotel_id INTO @id_hotel FROM habitaciones WHERE id = id_habitacion;
 
@@ -30,10 +48,9 @@ END IF;
 
 END;
 
-call agregar_reservacion (2, 2, '2024-02-13', '2024-11-11');
+call agregar_reservacion (4, 1, '2025-07-20', '2025-08-13');
 
-select * from reservaciones;
-
+select * from habitaciones_reservadas_fechas;
 
 -- Eliminar procedures 
 drop procedure agregar_reservacion;
