@@ -94,3 +94,4 @@ GROUP BY hotel_id;
 SELECT * FROM limite_hoteles;
 
 DROP VIEW limite_hoteles;
+
